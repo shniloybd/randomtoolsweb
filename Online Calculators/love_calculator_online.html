@@ -6,158 +6,195 @@
     <title>Love Calculator</title>
     <style>
         body {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    color: #fff;
-}
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+        }
 
-.container {
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    width: 350px;
-    text-align: center;
-    background: linear-gradient(to bottom, #ff9a9e, #fecfef);
-    color: #ff4081;
-}
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+            background: linear-gradient(to bottom, #ff9a9e, #fecfef);
+            color: #ff4081;
+        }
 
-h1 {
-    margin-bottom: 20px;
-    font-size: 25px;
-}
+        h1 {
+            margin-bottom: 20px;
+            font-size: 25px;
+        }
 
-.input-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
 
-.input-group {
-    flex: 1;
-    margin-right: 10px;
-    text-align: left;
-}
+        .input-group {
+            flex: 1;
+            margin-right: 10px;
+            text-align: left;
+        }
 
-.input-group:last-child {
-    margin-right: 0;
-}
+        .input-group:last-child {
+            margin-right: 0;
+        }
 
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-}
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
 
-.input-group input,
-.input-group select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ffb3c1;
-    border-radius: 5px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-}
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ffb3c1;
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        }
 
-button {
-    background: #ff4081;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-size: 1.1em;
-}
+        button {
+            background: #ff4081;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1.1em;
+        }
 
-button:hover {
-    background: #e91e63;
-}
+        button:hover {
+            background: #e91e63;
+        }
 
-.result {
-    margin-top: 20px;
-    font-size: 1.4em;
-    font-weight: bold;
-}
+        .result {
+            margin-top: 20px;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
 
-header{
-    text-align: center;
-}
-.footer{
-    text-align: center;
-}
+        header {
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+        }
 
     </style>
 </head>
 <body>
-    <header>
-        <h1>Random Tools Web</h1>
-        <p><a href="../index.html">home</a><a href="love_calculator_online.html">/Love-Calculator
-
-
-        </a></p>
-    </header>
-    <div class="container">
-        <h1>❤️ Love Calculator ❤️</h1>
-        <form id="loveForm">
-            <div class="input-row">
-                <div class="input-group">
-                    <label for="yourName">Your Name:</label>
-                    <input type="text" id="yourName" name="yourName" required>
-                </div>
-                <div class="input-group">
-                    <label for="yourGender">Your Gender:</label>
-                    <select id="yourGender" name="yourGender" required>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
+<header>
+    <h1>Random Tools Web</h1>
+    <p><a href="../index.html">home</a><a href="love_calculator_online.html">/Love-Calculator</a></p>
+</header>
+<div class="container">
+    <h1>❤️ Love Calculator ❤️</h1>
+    <form id="loveForm">
+        <div class="input-row">
+            <div class="input-group">
+                <label for="yourName">Your Name:</label>
+                <input type="text" id="yourName" name="yourName" required>
             </div>
-            <div class="input-row">
-                <div class="input-group">
-                    <label for="partnerName">Partner's Name:</label>
-                    <input type="text" id="partnerName" name="partnerName" required>
-                </div>
-                <div class="input-group">
-                    <label for="partnerGender">Partner's Gender:</label>
-                    <select id="partnerGender" name="partnerGender" required>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
+            <div class="input-group">
+                <label for="yourGender">Your Gender:</label>
+                <select id="yourGender" name="yourGender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
             </div>
-            <button type="submit">Calculate</button>
-        </form>
-        <div id="result" class="result"></div>
-    </div>
-    <div class="footer">
-        <p>© 2024 Random Tools Web All rights reserved</p>
-        <a href="../index.html">Back To Home</a>
-    </div>
-    <script>
-        document.getElementById('loveForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    calculateLove();
-});
+        </div>
+        <div class="input-row">
+            <div class="input-group">
+                <label for="partnerName">Partner's Name:</label>
+                <input type="text" id="partnerName" name="partnerName" required>
+            </div>
+            <div class="input-group">
+                <label for="partnerGender">Partner's Gender:</label>
+                <select id="partnerGender" name="partnerGender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit">Calculate</button>
+    </form>
+    <div id="result" class="result"></div>
+</div>
+<div class="footer">
+    <p>© 2024 Random Tools Web All rights reserved</p>
+    <a href="../index.html">Back To Home</a>
+</div>
+<script>
+    document.getElementById('loveForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        calculateLove();
+    });
 
-function calculateLove() {
-    const yourName = document.getElementById('yourName').value;
-    const partnerName = document.getElementById('partnerName').value;
+    function calculateLove() {
+        const yourName = document.getElementById('yourName').value.toLowerCase();
+        const partnerName = document.getElementById('partnerName').value.toLowerCase();
 
-    // Simple love percentage calculation
-    const lovePercentage = Math.floor(Math.random() * 101);
+        // Define pairs that always result in 100% love score
+        const perfectPairs = [
+            ['niloy', 'ayisha'],
+            ['niloy', 'asu'],
+            ['ayisha', 'niloy'],
+            ['asu', 'niloy']
+        ];
 
-    // Display result
-    const result = document.getElementById('result');
-    result.textContent = `💖 ${yourName} and ${partnerName} have a ${lovePercentage}% love! 💖`;
-}
+        // Define pairs that always result in 0% love score
+        const zeroLovePairs = [
+            ['niloy', 'nila'],
+            ['nila', 'niloy'],
+            ['rodro', 'lami'],
+            ['rodro', 'lamiya'],
+            ['shamim', 'lami'],
+            ['shamim', 'lamiya'],
+            ['lami', 'rodro'],
+            ['lamiya', 'rodro'],
+            ['lami', 'shamim'],
+            ['lamiya', 'shamim']
+        ];
 
-    </script>
+        // Check if the current pair is in the perfectPairs array
+        const isPerfectPair = perfectPairs.some(pair => {
+            return (pair[0] === yourName && pair[1] === partnerName) || (pair[0] === partnerName && pair[1] === yourName);
+        });
+
+        // Check if the current pair is in the zeroLovePairs array
+        const isZeroLovePair = zeroLovePairs.some(pair => {
+            return (pair[0] === yourName && pair[1] === partnerName) || (pair[0] === partnerName && pair[1] === yourName);
+        });
+
+        // Determine the love percentage based on the pair type
+        let lovePercentage;
+        if (isPerfectPair) {
+            lovePercentage = 100;
+        } else if (isZeroLovePair) {
+            lovePercentage = 0;
+        } else {
+            lovePercentage = Math.floor(Math.random() * 101);
+        }
+
+        // Display result
+        const result = document.getElementById('result');
+        result.textContent = `💖 ${yourName} and ${partnerName} have a ${lovePercentage}% love! 💖`;
+    }
+
+</script>
 </body>
 </html>
