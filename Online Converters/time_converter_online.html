@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Converter Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-sizing: border-box;
+        }
+        .container h1{
+            font-size: 25px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input, .input-group select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: #007BFF;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            width: calc(100% - 22px);
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+        }
+        .output p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            button {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .input-group input, .input-group select {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="time_converter_online.html">/Time-Converter-Online
+
+
+        </a></p>
+    </header>
+    <div class="container">
+        <h1>Time Converter Online</h1>
+        <div class="input-group">
+            <label for="inputValue">Value:</label>
+            <input type="number" id="inputValue" placeholder="Enter value">
+        </div>
+        <div class="input-group">
+            <label for="inputUnit">Convert from:</label>
+            <select id="inputUnit">
+                <option value="hours">Hours</option>
+                <option value="minutes">Minutes</option>
+                <option value="seconds">Seconds</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="outputUnit">Convert to:</label>
+            <select id="outputUnit">
+                <option value="hours">Hours</option>
+                <option value="minutes">Minutes</option>
+                <option value="seconds">Seconds</option>
+            </select>
+        </div>
+        <button onclick="convertTime()">Convert</button>
+        <div class="output">
+            <p id="result"></p>
+        </div>
+    </div>
+    <div class="footer" style="text-align: center;">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+      </div>
+    <script>
+        function convertTime() {
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            const inputUnit = document.getElementById('inputUnit').value;
+            const outputUnit = document.getElementById('outputUnit').value;
+            
+            let result;
+
+            if (isNaN(inputValue)) {
+                result = "Please enter a valid number.";
+            } else {
+                if (inputUnit === outputUnit) {
+                    result = `${inputValue} ${outputUnit}`;
+                } else {
+                    if (inputUnit === 'hours') {
+                        if (outputUnit === 'minutes') {
+                            result = inputValue * 60;
+                        } else if (outputUnit === 'seconds') {
+                            result = inputValue * 3600;
+                        }
+                    } else if (inputUnit === 'minutes') {
+                        if (outputUnit === 'hours') {
+                            result = inputValue / 60;
+                        } else if (outputUnit === 'seconds') {
+                            result = inputValue * 60;
+                        }
+                    } else if (inputUnit === 'seconds') {
+                        if (outputUnit === 'hours') {
+                            result = inputValue / 3600;
+                        } else if (outputUnit === 'minutes') {
+                            result = inputValue / 60;
+                        }
+                    }
+                    result = `${result} ${outputUnit}`;
+                }
+            }
+            
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>

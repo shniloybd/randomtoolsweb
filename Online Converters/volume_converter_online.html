@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volume Converter Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        input, select {
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 22px);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #007BFF;
+        }
+        button {
+            padding: 10px;
+            width: calc(100% - 22px);
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #outputVolume {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+            button {
+                font-size: 14px;
+            }
+            input, select {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="volume_converter_online.html">/Volume-Converter-Online
+
+
+        </a></p>
+    </header>
+    <div class="container">
+        <h1>Volume Converter Online</h1>
+        <input type="number" id="inputVolume" placeholder="Enter volume">
+        <label for="inputUnit">Convert from:</label>
+        <select id="inputUnit">
+            <option value="liters">Liters</option>
+            <option value="milliliters">Milliliters</option>
+            <option value="cubicMeters">Cubic Meters</option>
+            <option value="cubicFeet">Cubic Feet</option>
+            <option value="gallons">Gallons</option>
+        </select>
+        <label for="outputUnit">Convert to:</label>
+        <select id="outputUnit">
+            <option value="liters">Liters</option>
+            <option value="milliliters">Milliliters</option>
+            <option value="cubicMeters">Cubic Meters</option>
+            <option value="cubicFeet">Cubic Feet</option>
+            <option value="gallons">Gallons</option>
+        </select>
+        <button onclick="convertVolume()">Convert</button>
+        <p id="outputVolume"></p>
+    </div>
+    <div class="footer" style="text-align: center;">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+      </div>
+    <script>
+        function convertVolume() {
+            const inputVolume = parseFloat(document.getElementById('inputVolume').value);
+            const inputUnit = document.getElementById('inputUnit').value;
+            const outputUnit = document.getElementById('outputUnit').value;
+
+            if (isNaN(inputVolume)) {
+                document.getElementById('outputVolume').innerText = 'Please enter a valid number';
+                return;
+            }
+
+            const conversionRates = {
+                liters: 1,
+                milliliters: 1000,
+                cubicMeters: 0.001,
+                cubicFeet: 0.0353147,
+                gallons: 0.264172
+            };
+
+            const inputInLiters = inputVolume / conversionRates[inputUnit];
+            const outputVolume = inputInLiters * conversionRates[outputUnit];
+
+            document.getElementById('outputVolume').innerText = `${outputVolume.toFixed(2)} ${outputUnit}`;
+        }
+    </script>
+</body>
+</html>

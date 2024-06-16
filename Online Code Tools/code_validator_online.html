@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Validator Online</title>
+  <style>
+    /* Base styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .container h1 {
+      margin: 0 0 20px;
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      box-sizing: border-box;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    textarea:focus {
+      border-color: #007BFF;
+    }
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    label {
+      font-size: 16px;
+      color: #555;
+    }
+    select, button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      transition: background-color 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+    select:focus, button:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    #result.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    #result.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 600px) {
+      .options {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      select, button {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+    header{
+      text-align: center;
+    }
+    .footer{
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Random Tools Web</h1>
+    <p><a href="../index.html">home</a><a href="code_validator_online.html">/Code-Validator-Online</a></p>
+</header>
+  <div class="container">
+    <h1>Code Validator Online</h1>
+    <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
+    <div class="options">
+      <label for="language">Select Language:</label>
+      <select id="language">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+      </select>
+      <button onclick="validateCode()">Validate Code</button>
+    </div>
+    <div id="result"></div>
+  </div>
+  <div class="footer">
+    <p>© 2024 Random Tools Web All rights reserved</p>
+    <a href="../index.html">Back To Home</a>
+</div>
+  <script>
+    function validateCode() {
+      const codeInput = document.getElementById('codeInput').value;
+      const language = document.getElementById('language').value;
+      const result = document.getElementById('result');
+      result.className = ''; // Reset class
+
+      if (!codeInput.trim()) {
+        result.textContent = 'Please enter some code to validate.';
+        result.classList.add('error');
+        return;
+      }
+
+      switch (language) {
+        case 'html':
+          validateHTML(codeInput);
+          break;
+        case 'css':
+          validateCSS(codeInput);
+          break;
+        case 'javascript':
+          validateJavaScript(codeInput);
+          break;
+        case 'python':
+          validatePython(codeInput);
+          break;
+        default:
+          result.textContent = 'Unknown language selected.';
+          result.classList.add('error');
+      }
+    }
+
+    function validateHTML(code) {
+      const result = document.getElementById('result');
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(code, 'text/html');
+
+      if (doc.querySelector('parsererror')) {
+        result.textContent = 'Invalid HTML code.';
+        result.classList.add('error');
+      } else {
+        result.textContent = 'HTML code is valid.';
+        result.classList.add('success');
+      }
+    }
+
+    function validateCSS(code) {
+      const result = document.getElementById('result');
+      const styleSheet = new CSSStyleSheet();
+      try {
+        styleSheet.replaceSync(code);
+        result.textContent = 'CSS code is valid.';
+        result.classList.add('success');
+      } catch (e) {
+        result.textContent = 'Invalid CSS code: ' + e.message;
+        result.classList.add('error');
+      }
+    }
+
+    function validateJavaScript(code) {
+      const result = document.getElementById('result');
+      try {
+        new Function(code);
+        result.textContent = 'JavaScript code is valid.';
+        result.classList.add('success');
+      } catch (e) {
+        result.textContent = 'Invalid JavaScript code: ' + e.message;
+        result.classList.add('error');
+      }
+    }
+
+    function validatePython(code) {
+      const result = document.getElementById('result');
+
+      // Mock Python validation
+      const invalidPatterns = [/print\s*\(.*?\)\s*:/, /def\s+\w+\(.*?\)\s*:/];
+
+      const errors = invalidPatterns.some(pattern => pattern.test(code));
+
+      if (errors) {
+        result.textContent = 'Invalid Python code.';
+        result.classList.add('error');
+      } else {
+        result.textContent = 'Python code is valid.';
+        result.classList.add('success');
+      }
+    }
+  </script>
+</body>
+</html>

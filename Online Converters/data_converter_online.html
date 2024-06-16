@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Converter Online</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+
+    #converter {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 400px;
+    }
+
+    input[type="text"] {
+        width: 94%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    #output {
+        margin-top: 20px;
+    }
+    header{
+        text-align: center;
+    }
+    .footer{
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="data_converter_online.html">/Data-Converter-Online
+        </a></p>
+    </header>
+<div id="converter">
+    <h2>Data Converter Online</h2>
+    <input type="text" id="inputData" placeholder="Enter data to convert...">
+    <select id="conversionType">
+        <option value="b_to_kb">Bits (b) to Kilobits (Kb)</option>
+        <option value="kb_to_mb">Kilobits (Kb) to Megabits (Mb)</option>
+        <option value="mb_to_gb">Megabits (Mb) to Gigabits (Gb)</option>
+        <option value="gb_to_tb">Gigabits (Gb) to Terabits (Tb)</option>
+        <option value="tb_to_pb">Terabits (Tb) to Petabits (Pb)</option>
+        <option value="pb_to_eb">Petabits (Pb) to Exabits (Eb)</option>
+        <option value="eb_to_zb">Exabits (Eb) to Zettabits (Zb)</option>
+        <option value="zb_to_yb">Zettabits (Zb) to Yottabits (Yb)</option>
+        <option value="yb_to_kb">Yottabits (Yb) to Kibibytes (KiB)</option>
+    </select>
+    <button onclick="convertData()">Convert</button>
+    <div id="output"></div>
+</div>
+<div class="footer" style="text-align: center;">
+    <p>© 2024 Random Tools Web All rights reserved</p>
+    <a href="../index.html">Back To Home</a>
+  </div>
+<script>
+    function convertData() {
+        var inputData = parseFloat(document.getElementById('inputData').value);
+        var conversionType = document.getElementById('conversionType').value;
+        var outputDiv = document.getElementById('output');
+        var convertedData = '';
+
+        switch (conversionType) {
+            case 'b_to_kb':
+                convertedData = bitsToKb(inputData);
+                break;
+            case 'kb_to_mb':
+                convertedData = KbToMb(inputData);
+                break;
+            case 'mb_to_gb':
+                convertedData = MbToGb(inputData);
+                break;
+            case 'gb_to_tb':
+                convertedData = GbToTb(inputData);
+                break;
+            case 'tb_to_pb':
+                convertedData = TbToPb(inputData);
+                break;
+            case 'pb_to_eb':
+                convertedData = PbToEb(inputData);
+                break;
+            case 'eb_to_zb':
+                convertedData = EbToZb(inputData);
+                break;
+            case 'zb_to_yb':
+                convertedData = ZbToYb(inputData);
+                break;
+            case 'yb_to_kb':
+                convertedData = YbToKiB(inputData);
+                break;
+            default:
+                convertedData = 'Invalid Conversion';
+        }
+
+        outputDiv.innerHTML = '<h3>Converted Data:</h3><p>' + convertedData + '</p>';
+    }
+
+    function bitsToKb(bits) {
+        return (bits / 1024).toFixed(2) + ' Kb';
+    }
+
+    function KbToMb(kb) {
+        return (kb / 1024).toFixed(2) + ' Mb';
+    }
+
+    function MbToGb(mb) {
+        return (mb / 1024).toFixed(2) + ' Gb';
+    }
+
+    function GbToTb(gb) {
+        return (gb / 1024).toFixed(2) + ' Tb';
+    }
+
+    function TbToPb(tb) {
+        return (tb / 1024).toFixed(2) + ' Pb';
+    }
+
+    function PbToEb(pb) {
+        return (pb / 1024).toFixed(2) + ' Eb';
+    }
+
+    function EbToZb(eb) {
+        return (eb / 1024).toFixed(2) + ' Zb';
+    }
+
+    function ZbToYb(zb) {
+        return (zb / 1024).toFixed(2) + ' Yb';
+    }
+
+    function YbToKiB(yb) {
+        return (yb / 1024).toFixed(2) + ' KiB';
+    }
+</script>
+</body>
+</html>

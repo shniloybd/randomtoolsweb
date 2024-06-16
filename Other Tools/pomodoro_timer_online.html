@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0px;
+        }
+        .container h1 {
+            font-size: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .timer {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .controls, .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            flex: 1 1 auto;
+            max-width: 150px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .timer {
+                font-size: 2.5em;
+            }
+            button {
+                padding: 10px;
+                max-width: 100%;
+            }
+        }
+
+        header{
+            text-align: center;
+        }
+        .footer{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="pomodoro_timer_online.html">/Pomodoro-Timer-Online</a></p>
+    </header>
+
+    <div class="container">
+        <h1>Pomodoro Timer Online</h1>
+        <div class="timer" id="timer">25:00</div>
+        <div class="controls">
+            <button id="startPauseButton" onclick="toggleStartPause()">Start</button>
+            <button onclick="resetTimer()">Reset</button>
+        </div>
+        <div class="options">
+            <button onclick="setPomodoro()">Pomodoro</button>
+            <button onclick="setShortBreak()">Short Break</button>
+            <button onclick="setLongBreak()">Long Break</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+    </div>
+    <script>
+        let timer;
+        let minutes = 25;
+        let seconds = 0;
+        let isPaused = false;
+
+        function updateTimerDisplay() {
+            const timerDisplay = document.getElementById('timer');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+            timerDisplay.textContent = `${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        function toggleStartPause() {
+            const startPauseButton = document.getElementById('startPauseButton');
+            if (isPaused || !timer) {
+                startTimer();
+                startPauseButton.textContent = 'Pause';
+            } else {
+                pauseTimer();
+                startPauseButton.textContent = 'Start';
+            }
+        }
+
+        function startTimer() {
+            if (timer) return; // Prevent multiple intervals
+            timer = setInterval(() => {
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        clearInterval(timer);
+                        timer = null;
+                        document.getElementById('startPauseButton').textContent = 'Start';
+                        alert('Time is up!');
+                        return;
+                    }
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+                updateTimerDisplay();
+            }, 1000);
+            isPaused = false;
+        }
+
+        function pauseTimer() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+                isPaused = true;
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            timer = null;
+            isPaused = false;
+            minutes = 25;
+            seconds = 0;
+            document.getElementById('startPauseButton').textContent = 'Start';
+            updateTimerDisplay();
+        }
+
+        function setPomodoro() {
+            clearInterval(timer);
+            timer = null;
+            isPaused = false;
+            minutes = 25;
+            seconds = 0;
+            document.getElementById('startPauseButton').textContent = 'Start';
+            updateTimerDisplay();
+        }
+
+        function setShortBreak() {
+            clearInterval(timer);
+            timer = null;
+            isPaused = false;
+            minutes = 5;
+            seconds = 0;
+            document.getElementById('startPauseButton').textContent = 'Start';
+            updateTimerDisplay();
+        }
+
+        function setLongBreak() {
+            clearInterval(timer);
+            timer = null;
+            isPaused = false;
+            minutes = 15;
+            seconds = 0;
+            document.getElementById('startPauseButton').textContent = 'Start';
+            updateTimerDisplay();
+        }
+
+        updateTimerDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      width: 100%;
+      max-width: 320px;
+      padding: 20px;
+      background-color: #333;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .calculator input {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      background-color: #222;
+      color: #fff;
+      box-sizing: border-box;
+    }
+
+    .calculator .buttons {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .calculator button {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .calculator button:hover {
+      background-color: #45a049;
+    }
+
+    .calculator button:active {
+      transform: scale(0.95);
+    }
+
+    .calculator button.operator {
+      background-color: #f0ad4e;
+    }
+
+    .calculator button.operator:hover {
+      background-color: #ec971f;
+    }
+
+    .calculator button.equal {
+      background-color: #5cb85c;
+    }
+
+    .calculator button.equal:hover {
+      background-color: #4cae4c;
+    }
+
+    .calculator button.clear {
+      background-color: #d9534f;
+      grid-column: span 4;
+      margin-top: 10px;
+    }
+
+    .calculator button.clear:hover {
+      background-color: #c9302c;
+    }
+
+    header{
+        text-align: center;
+    }
+    .footer{
+        text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="calculator_online.html">/Calculator-Online
+        </a></p>
+    </header>
+  <div class="calculator">
+    <input type="text" id="result" readonly>
+    <div class="buttons">
+      <button onclick="appendToResult('7')">7</button>
+      <button onclick="appendToResult('8')">8</button>
+      <button onclick="appendToResult('9')">9</button>
+      <button class="operator" onclick="appendToResult('/')">/</button>
+      <button onclick="appendToResult('4')">4</button>
+      <button onclick="appendToResult('5')">5</button>
+      <button onclick="appendToResult('6')">6</button>
+      <button class="operator" onclick="appendToResult('*')">*</button>
+      <button onclick="appendToResult('1')">1</button>
+      <button onclick="appendToResult('2')">2</button>
+      <button onclick="appendToResult('3')">3</button>
+      <button class="operator" onclick="appendToResult('-')">-</button>
+      <button onclick="appendToResult('0')">0</button>
+      <button onclick="appendToResult('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button class="operator" onclick="appendToResult('+')">+</button>
+    </div>
+    <button class="clear" onclick="clearResult()">Clear</button>
+  </div>
+  <div class="footer">
+    <p>© 2024 Random Tools Web All rights reserved</p>
+    <a href="../index.html">Back To Home</a>
+</div>
+  <script>
+    // JavaScript code
+    let result = document.getElementById('result');
+
+    function appendToResult(value) {
+      if (result.value === 'Error') {
+        result.value = '';
+      }
+      result.value += value;
+    }
+
+    function calculate() {
+      try {
+        result.value = eval(result.value);
+      } catch (error) {
+        result.value = 'Error';
+      }
+    }
+
+    function clearResult() {
+      result.value = '';
+    }
+  </script>
+</body>
+</html>

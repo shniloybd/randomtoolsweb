@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyword Counter Online</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .container {
+        max-width: 800px;
+        width: 100%;
+        margin: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+    }
+    .container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+    textarea {
+        width: 100%;
+        height: 150px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #keywordCount {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        font-size: 16px;
+    }
+    #keywordCount b {
+        color: #007bff;
+    }
+    .error {
+        color: red;
+        display: none;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    @media (max-width: 600px) {
+        .container {
+            padding: 15px;
+            margin: 10px;
+        }
+        h1 {
+            font-size: 20px;
+        }
+        textarea {
+            height: 120px;
+            font-size: 14px;
+        }
+        button {
+            font-size: 14px;
+            padding: 8px;
+        }
+        #keywordCount {
+            font-size: 14px;
+        }
+    }
+    header{
+        text-align: center;
+    }
+    .footer{
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="keyword_counter_online.html">/Keyword-Counter-Online
+        </a></p>
+    </header>
+<div class="container">
+    <h1>Keyword Counter Online</h1>
+    <div id="error" class="error">Please enter text to count keywords.</div>
+    <textarea id="inputText" placeholder="Enter text here..."></textarea>
+
+    <button onclick="countKeywords()">Count Keywords</button>
+
+    <div id="keywordCount"></div>
+</div>
+<div class="footer">
+    <p>© 2024 Random Tools Web All rights reserved</p>
+    <a href="../index.html">Back To Home</a>
+  </div>
+<script>
+function countKeywords() {
+    var text = document.getElementById("inputText").value.trim();
+    var errorDiv = document.getElementById("error");
+    
+    if (text === "") {
+        errorDiv.style.display = 'block';
+        document.getElementById("keywordCount").innerHTML = '';
+        return;
+    } else {
+        errorDiv.style.display = 'none';
+    }
+
+    var keywords = text.toLowerCase().match(/\b\w+\b/g);
+    var keywordCounts = {};
+
+    if (keywords) {
+        keywords.forEach(function(word) {
+            if (keywordCounts[word]) {
+                keywordCounts[word]++;
+            } else {
+                keywordCounts[word] = 1;
+            }
+        });
+    }
+
+    var result = "";
+    for (var key in keywordCounts) {
+        if (keywordCounts.hasOwnProperty(key)) {
+            result += "<b>" + key + "</b>: " + keywordCounts[key] + "<br>";
+        }
+    }
+
+    document.getElementById("keywordCount").innerHTML = result;
+}
+</script>
+
+</body>
+</html>

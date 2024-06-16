@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mass Converter Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .converter {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .converter h2 {
+            margin-bottom: 20px;
+        }
+        .converter select,
+        .converter input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .converter button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .converter button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .converter #inputUnit{
+            width: 100%;
+        }
+        .converter #outputUnit{
+            width: 100%;
+        }
+        .converter #inputValue{
+            width: 90%;
+        }
+  
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="mass_converter_online.html">/Mass-Converter-Online
+
+        </a></p>
+    </header>
+<div class="converter">
+    <h2>Mass Converter Online</h2>
+    <input type="number" id="inputValue" placeholder="Enter mass value" required> <br>
+    <select id="inputUnit"> 
+        <option value="kg">Kilograms (kg)</option>
+        <option value="g">Grams (g)</option>
+        <option value="lb">Pounds (lb)</option>
+        <option value="oz">Ounces (oz)</option>
+    </select> <br>
+    <select id="outputUnit">
+        <option value="kg">Kilograms (kg)</option>
+        <option value="g">Grams (g)</option>
+        <option value="lb">Pounds (lb)</option>
+        <option value="oz">Ounces (oz)</option>
+    </select>
+    <button onclick="convertMass()">Convert</button>
+    <div class="result" id="result"></div>
+</div>
+<div class="footer" style="text-align: center;">
+    <p>© 2024 Random Tools Web All rights reserved</p>
+    <a href="../index.html">Back To Home</a>
+  </div>
+<script>
+    function convertMass() {
+        const inputValue = parseFloat(document.getElementById('inputValue').value);
+        const inputUnit = document.getElementById('inputUnit').value;
+        const outputUnit = document.getElementById('outputUnit').value;
+
+        if (isNaN(inputValue)) {
+            document.getElementById('result').innerText = 'Please enter a valid number';
+            return;
+        }
+
+        const conversionRates = {
+            kg: { kg: 1, g: 1000, lb: 2.20462, oz: 35.274 },
+            g: { kg: 0.001, g: 1, lb: 0.00220462, oz: 0.035274 },
+            lb: { kg: 0.453592, g: 453.592, lb: 1, oz: 16 },
+            oz: { kg: 0.0283495, g: 28.3495, lb: 0.0625, oz: 1 }
+        };
+
+        const convertedValue = inputValue * conversionRates[inputUnit][outputUnit];
+        document.getElementById('result').innerText = `Result: ${convertedValue.toFixed(4)} ${outputUnit}`;
+    }
+</script>
+
+</body>
+</html>

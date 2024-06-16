@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Tools Web</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover a comprehensive list of online tools for various needs including calculators, code tools, converters, text tools, and miscellaneous tools.">
+    <meta name="keywords" content="random toools web, online tools, calculators, code tools, converters, text tools, miscellaneous tools, age calculator, BMI calculator, currency converter, password generator">
+    <meta name="author" content="Shoyaeb Hosen Niloy">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourwebsite.com/tools-list">
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .category {
+            margin-bottom: 30px;
+        }
+        .category h2 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tools-list li {
+            width: 30%;
+            margin-bottom: 20px;
+        }
+        .tools-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .tools-list a::after {
+            content: '➔';
+            margin-left: 10px;
+        }
+        .tools-list a:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .tools-list li {
+                width: 48%;
+            }
+        }
+        @media (max-width: 480px) {
+            .tools-list li {
+                width: 100%;
+            }
+        }
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+        .popup-content h2 {
+            margin-top: 0;
+        }
+        .popup-content p {
+            margin-bottom: 20px;
+        }
+        .popup-content .close-btn,
+        .popup-content .talk-btn {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .popup-content .close-btn:hover,
+        .popup-content .talk-btn:hover {
+            background-color: #0056b3;
+        }
+        .popup-content .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        /* Footer Styles */
+        footer {
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Popup -->
+    <div class="popup" id="popup" onclick="closePopup()">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <h2>WELCOME TO RANDOM TOOLS WEB</h2>
+            <p>Discover a variety of free, open-source tools to simplify your daily tasks at Random Tools Web.</p>
+            <p>This website, crafted by Shoyaeb Hosen Niloy with the help of ChatGPT, Blackbox AI, and Perplexity, offers a collection of free, open-source tools designed to make your life easier. Explore and enjoy the diverse functionalities we provide!</p>
+            <p>Need a website design? I'm available for any web design project. Let's create something amazing together! Contact me for more details.</p>
+            <div class="button-container">
+                <button class="talk-btn" onclick="location.href='mailto:youremail@example.com'">Let's Talk</button>
+                <button class="close-btn" onclick="closePopup()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Random Tools Web</h1>
+        <p style="text-align: center;">Discover a variety of free, open-source tools to simplify your daily tasks</p>
+
+        <div class="category">
+            <h2>Calculators</h2>
+            <ul class="tools-list">
+                <li><a href="Online Calculators/calculator_online.html">Online Calculator</a></li>
+                <li><a href="Online Calculators/Age_Calculator_Online.html">Age Calculator Online</a></li>
+                <li><a href="Online Calculators/Birthday_Calculator_Online.html">Birthday Calculator Online</a></li>
+                <li><a href="Online Calculators/bmi_calculator_online.html">BMI Calculator Online</a></li>
+                <li><a href="Online Calculators/discount_calculator_online.html">Discount Calculator Online</a></li>
+                <li><a href="Online Calculators/investment_calculator_online.html">Investment Calculator Online</a></li>
+                <li><a href="Online Calculators/loan_calculator_online.html">Loan Calculator Online</a></li>
+                <li><a href="Online Calculators/tip_calculator_online.html">Tip Calculator Online</a></li>
+                <li><a href="Online Calculators/love_calculator_online.html">Love Calculator Online</a></li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h2>Code Tools</h2>
+            <ul class="tools-list">
+                <li><a href="Online Code Tools/code_prettier_online.html">Code Prettier Online</a></li>
+                <li><a href="Online Code Tools/code_validator_online.html">Code Validator Online</a></li>
+                <li><a href="Online Code Tools/code_minify_online.html">Code Minify Online</a></li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h2>Converters</h2>
+            <ul class="tools-list">
+                <li><a href="Online Converters/area_converter_online.html">Area Converter Online</a></li>
+                <li><a href="Online Converters/currency_converter_online.html">Currency Converter Online</a></li>
+                <li><a href="Online Converters/data_converter_online.html">Data Converter Online</a></li>
+                <li><a href="Online Converters/length_converter_online.html">Length Converter Online</a></li>
+                <li><a href="Online Converters/mass_converter_online.html">Mass Converter Online</a></li>
+                <li><a href="Online Converters/speed_converter_online.html">Speed Converter Online</a></li>
+                <li><a href="Online Converters/temperature_converter_online.html">Temperature Converter Online</a></li>
+                <li><a href="Online Converters/time_converter_online.html">Time Converter Online</a></li>
+                <li><a href="Online Converters/volume_converter_online.html">Volume Converter Online</a></li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h2>Text Tools</h2>
+            <ul class="tools-list">
+                <li><a href="Online Text Tools/case_converter_online.html">Case Converter Online</a></li>
+                <li><a href="Online Text Tools/duplicate_remover_online.html">Duplicate Remover Online</a></li>
+                <li><a href="Online Text Tools/keyword_counter_online.html">Keyword Counter Online</a></li>
+                <li><a href="Online Text Tools/line_counter_online.html">Line Counter Online</a></li>
+                <li><a href="Online Text Tools/text_blank_space_remover_online.html">Text Blank Space Remover Online</a></li>
+                <li><a href="Online Text Tools/word_counter_online.html">Word Counter Online</a></li>
+                <li><a href="Online Text Tools/add-text-each-line-online.html">Add text each line Online</a></li>
+                <li><a href="Online Text Tools/number_extractor_online.html">Number Extractor Online</a></li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h2>Miscellaneous Tools</h2>
+            <ul class="tools-list">
+                <li><a href="Other Tools/color_picker_online.html">Color Picker Online</a></li>
+                <li><a href="Other Tools/ip_checker_online.html">IP Checker Online</a></li>
+                <li><a href="Other Tools/password_generator_online.html">Password Generator Online</a></li>
+                <li><a href="Other Tools/pomodoro_timer_online.html">Pomodoro Timer Online</a></li>
+                <li><a href="Other Tools/stopwatch_timer_online.html">Stopwatch Timer Online</a></li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>&copy; 2024 Random Tools Web | <a href="https://yourwebsite.com/privacy-policy">About Us</a> | <a href="https://yourwebsite.com/privacy-policy">Contact Us</a> | <a href="https://yourwebsite.com/privacy-policy">Privacy Policy</a> | <a href="https://yourwebsite.com/terms-of-service">Terms of Service</a></p>
+         
+        </footer>
+    </div>
+
+    <script>
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Show the popup when the page loads
+        window.onload = function() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        // Close the popup when clicking anywhere outside the popup content
+        document.addEventListener('click', function(event) {
+            var popup = document.getElementById('popup');
+            var isClickInside = popup.contains(event.target);
+            if (!isClickInside) {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>

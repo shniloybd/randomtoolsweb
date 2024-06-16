@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Extractor Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .container h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+            font-size: 25px;
+        }
+        #inputText {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            margin: 0 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .error-message {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            #inputText, #outputNumbers {
+                height: 100px;
+                font-size: 14px;
+            }
+            .button-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+        header{
+            text-align: center;
+        }
+        .footer{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="number_extractor_online.html">/Number-Extractor-Online
+        </a></p>
+    </header>
+    <div class="container">
+        <h1>Number Extractor Online</h1>
+        <textarea id="inputText" placeholder="Paste your text with numbers here..."></textarea>
+
+        <div class="button-container">
+            <button onclick="extractNumbers()">Extract Numbers</button>
+            <button onclick="copyToClipboard()">Copy Number List</button>
+            <button onclick="downloadNumberList()">Download Number List</button>
+        </div>
+
+        <textarea id="outputNumbers" readonly placeholder="Extracted numbers will appear here..."></textarea>
+        
+        <div id="errorMessage" class="error-message" style="display: none;">
+            Please extract numbers first.
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+      </div>
+    <script>
+        function extractNumbers() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                displayErrorMessage();
+                return;
+            }
+
+            const numberPattern = /-?\d+(\.\d+)?/g;
+            const numbers = inputText.match(numberPattern);
+            document.getElementById('outputNumbers').value = numbers ? numbers.join('\n') : 'No numbers found';
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputNumbers');
+            if (!outputText.value.trim()) {
+                displayErrorMessage();
+                return;
+            }
+
+            outputText.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
+        }
+
+        function downloadNumberList() {
+            const numbersText = document.getElementById('outputNumbers').value;
+            if (!numbersText.trim()) {
+                displayErrorMessage();
+                return;
+            }
+
+            const blob = new Blob([numbersText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'number_list.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function displayErrorMessage() {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 3000); // Hide after 3 seconds
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Blank Space Remover Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column; /* Changed to column layout */
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-top: 0;
+            font-size: 25px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px; /* Added margin bottom for button spacing */
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        textarea#output-text {
+            margin-top: 10px;
+        }
+
+        /* Popup overlay styles */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Added to stack buttons vertically */
+            align-items: center;
+        }
+
+        .popup h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .popup button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 10px; /* Added margin bottom for button spacing */
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+        }
+        header{
+            text-align: center;
+        }
+        .footer{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="text_blank_space_remover_online.html">/Text-Blank-Space-Remover-Online
+    
+        </a></p>
+    </header>
+    <div class="container">
+        <h1>Text Blank Space Remover Online</h1>
+        <textarea id="input-text" placeholder="Enter text with blank spaces..."></textarea>
+        <button onclick="removeSpaces()">Remove Spaces</button>
+        <button onclick="copyText()">Copy</button>
+        <button onclick="downloadFile()">Download</button>
+        <textarea id="output-text" readonly placeholder="Result will appear here..."></textarea>
+    </div>
+    <div class="footer">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+      </div>
+    <!-- Popup overlay -->
+    <div class="overlay" id="popup-overlay">
+        <div class="popup">
+            <h2 id="popup-title"></h2>
+            <p id="popup-message"></p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize popup overlay as hidden
+        document.getElementById('popup-overlay').style.display = 'none';
+
+        function removeSpaces() {
+            var inputText = document.getElementById('input-text').value.trim();
+            if (inputText === '') {
+                showPopup('Error', 'Please enter text before removing spaces.');
+                return;
+            }
+            var outputText = inputText.replace(/\s/g, '');
+            document.getElementById('output-text').value = outputText;
+        }
+
+        function copyText() {
+            var outputText = document.getElementById('output-text').value;
+            if (outputText === '') {
+                showPopup('Error', 'Please remove spaces before copying.');
+                return;
+            }
+            navigator.clipboard.writeText(outputText)
+                .then(() => {
+                    showPopup('Success', 'Text copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ', err);
+                    showPopup('Error', 'Failed to copy text. Please try again.');
+                });
+        }
+
+        function downloadFile() {
+            var outputText = document.getElementById('output-text').value;
+            if (outputText === '') {
+                showPopup('Error', 'Please remove spaces before downloading.');
+                return;
+            }
+            var blob = new Blob([outputText], { type: 'text/plain' });
+            var fileName = 'text_without_spaces_randomtoolsweb.txt';
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showPopup('Success', 'File downloaded successfully!');
+        }
+
+        function showPopup(title, message) {
+            document.getElementById('popup-title').innerText = title;
+            document.getElementById('popup-message').innerText = message;
+            document.getElementById('popup-overlay').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

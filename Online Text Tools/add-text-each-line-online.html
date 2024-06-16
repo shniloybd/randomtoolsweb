@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Text Each Line Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .container h1{
+            font-size: 25px;
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .small-button {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .error-message {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+
+        .error-message button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            float: right;
+            cursor: pointer;
+        }
+        header{
+            text-align: center;
+        }
+        .footer{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="add-text-each-line-online.html">/Add-text-each-line-online
+    
+    
+        </a></p>
+    </header>
+    <div class="container">
+        <h1>Add Text Each Line Online</h1>
+        <div class="error-message" id="errorMessage">
+            <span>Please modify the text before clicking this button.</span>
+            <button onclick="document.getElementById('errorMessage').style.display='none'">&times;</button>
+        </div>
+        <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+        <div class="button-container">
+            <button class="small-button" id="clearInputText">Clear</button>
+            <button class="small-button" id="selectAllInputText">Select All</button>
+        </div>
+        <input type="text" id="prefix" placeholder="Text to add at the beginning">
+        <input type="text" id="suffix" placeholder="Text to add at the end">
+        <button id="modifyTextButton">Modify Text</button>
+        <textarea id="outputText" placeholder="Modified text will appear here..." readonly></textarea>
+        <div class="button-container">
+            <button class="small-button" id="clearOutputText">Clear</button>
+            <button class="small-button" id="selectAllOutputText">Select All</button>
+            <button class="small-button" id="copyOutputText">Copy All</button>
+            <button class="small-button" id="downloadOutputText">Download</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+      </div>
+    <script>
+        function showErrorMessage() {
+            const errorMessageDiv = document.getElementById('errorMessage');
+            errorMessageDiv.style.display = 'block';
+        }
+
+        function checkAndPerformAction(action) {
+            const outputText = document.getElementById('outputText').value;
+            if (outputText.trim() === '') {
+                showErrorMessage();
+            } else {
+                action();
+            }
+        }
+
+        document.getElementById('modifyTextButton').addEventListener('click', function() {
+            const inputText = document.getElementById('inputText').value;
+            const prefix = document.getElementById('prefix').value;
+            const suffix = document.getElementById('suffix').value;
+
+            if (inputText.trim() === '') {
+                showErrorMessage();
+                return;
+            }
+
+            const lines = inputText.split('\n');
+            const modifiedLines = lines.map(line => `${prefix}${line}${suffix}`);
+            const outputText = modifiedLines.join('\n');
+
+            document.getElementById('outputText').value = outputText;
+        });
+
+        document.getElementById('clearInputText').addEventListener('click', function() {
+            document.getElementById('inputText').value = '';
+        });
+
+        document.getElementById('selectAllInputText').addEventListener('click', function() {
+            document.getElementById('inputText').select();
+        });
+
+        document.getElementById('clearOutputText').addEventListener('click', function() {
+            checkAndPerformAction(() => {
+                document.getElementById('outputText').value = '';
+            });
+        });
+
+        document.getElementById('selectAllOutputText').addEventListener('click', function() {
+            checkAndPerformAction(() => {
+                document.getElementById('outputText').select();
+            });
+        });
+
+        document.getElementById('copyOutputText').addEventListener('click', function() {
+            checkAndPerformAction(() => {
+                const outputText = document.getElementById('outputText');
+                outputText.select();
+                document.execCommand('copy');
+
+                const copyButton = document.getElementById('copyOutputText');
+                const originalText = copyButton.innerText;
+                copyButton.innerText = 'Copied';
+                setTimeout(() => {
+                    copyButton.innerText = originalText;
+                }, 2000);
+            });
+        });
+
+        document.getElementById('downloadOutputText').addEventListener('click', function() {
+            checkAndPerformAction(() => {
+                const outputText = document.getElementById('outputText').value;
+                const blob = new Blob([outputText], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Random Tools Web - modified-text.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        });
+    </script>
+</body>
+</html>

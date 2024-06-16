@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Prettifier</title>
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+      width: 80%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .container h1 {
+      margin-bottom: 20px;
+      font-size: 25px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .popup, .popup-overlay {
+      display: none;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        padding: 10px;
+      }
+      textarea {
+        height: 120px;
+      }
+    }
+
+
+    header{
+      text-align: center;
+    }
+
+    .footer{
+      text-align: center;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Random Tools Web</h1>
+    <p><a href="../index.html">home</a><a href="code_prettier_online.html">/Code-Prettifier-Online</a></p>
+</header>
+  <div class="container">
+    <h1>Code Prettifier Online</h1>
+    <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
+    <div>
+      <button id="prettifyBtn">Prettify</button>
+      <button id="copyBtn">Copy Code</button>
+    </div>
+    <textarea id="output" placeholder="Prettified code will appear here..." readonly></textarea>
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="popup" id="popup">
+      <p>Please prettify the code first.</p>
+      <button id="closePopup">Close</button>
+    </div>
+  </div>
+  <div class="footer">
+    <p>© 2024 Random Tools Web All rights reserved</p>
+    <a href="../index.html">Back To Home</a>
+</div>
+  <script>
+    // JavaScript
+    document.getElementById('prettifyBtn').addEventListener('click', function() {
+      var codeInput = document.getElementById('codeInput').value;
+      var prettifiedCode = prettifyCode(codeInput);
+      document.getElementById('output').value = prettifiedCode;
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      var outputTextarea = document.getElementById('output');
+      var prettifiedCode = outputTextarea.value.trim();
+      if (prettifiedCode === "") {
+        showPopup();
+      } else {
+        outputTextarea.select();
+        document.execCommand('copy');
+        alert('Code copied to clipboard!');
+      }
+    });
+
+    document.getElementById('closePopup').addEventListener('click', function() {
+      hidePopup();
+    });
+
+    function prettifyCode(code) {
+      // Prettify code here (you can use libraries like prettier.js or beautify.js)
+      // For simplicity, let's just return the code as is for now
+      return code;
+    }
+
+    function showPopup() {
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('popupOverlay').style.display = 'block';
+    }
+
+    function hidePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('popupOverlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

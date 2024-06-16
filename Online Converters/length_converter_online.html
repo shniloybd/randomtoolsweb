@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Length Converter Onlie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .converter {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .converter h1{
+            font-size: 25px;
+        }
+        .converter input, .converter select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .converter button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .converter button:hover {
+            background: #0056b3;
+        }
+        @media (max-width: 600px) {
+            .converter {
+                padding: 15px;
+            }
+            .converter h1 {
+                font-size: 24px;
+            }
+            .converter button {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="length_converter_online.html">/Length-Converter-Online
+        </a></p>
+    </header>
+    <div class="converter">
+        <h1>Length Converter Online</h1>
+        <input type="number" id="inputValue" placeholder="Enter value">
+        <select id="inputUnit">
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+            <option value="centimeters">Centimeters</option>
+            <option value="millimeters">Millimeters</option>
+            <option value="inches">Inches</option>
+            <option value="feet">Feet</option>
+            <option value="yards">Yards</option>
+            <option value="miles">Miles</option>
+        </select>
+        <select id="outputUnit">
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+            <option value="centimeters">Centimeters</option>
+            <option value="millimeters">Millimeters</option>
+            <option value="inches">Inches</option>
+            <option value="feet">Feet</option>
+            <option value="yards">Yards</option>
+            <option value="miles">Miles</option>
+        </select>
+        <button onclick="convertLength()">Convert</button>
+        <h2 id="result"></h2>
+    </div>
+    <div class="footer" style="text-align: center;">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+      </div>
+    <script>
+        const conversionFactors = {
+            meters: 1,
+            kilometers: 0.001,
+            centimeters: 100,
+            millimeters: 1000,
+            inches: 39.3701,
+            feet: 3.28084,
+            yards: 1.09361,
+            miles: 0.000621371
+        };
+
+        function convertLength() {
+            const inputValue = document.getElementById('inputValue').value;
+            const inputUnit = document.getElementById('inputUnit').value;
+            const outputUnit = document.getElementById('outputUnit').value;
+
+            if (isNaN(inputValue) || inputValue === '') {
+                document.getElementById('result').innerText = 'Please enter a valid number';
+                return;
+            }
+
+            const valueInMeters = inputValue / conversionFactors[inputUnit];
+            const convertedValue = valueInMeters * conversionFactors[outputUnit];
+
+            document.getElementById('result').innerText = `${inputValue} ${inputUnit} is equal to ${convertedValue.toFixed(2)} ${outputUnit}`;
+        }
+    </script>
+</body>
+</html>

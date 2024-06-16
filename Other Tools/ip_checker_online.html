@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Checker Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            font-size: 25px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        header {
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+            position: relative;
+        }
+        .progress-bar div {
+            height: 20px;
+            width: 0;
+            background-color: #007BFF;
+            border-radius: 5px;
+            position: relative;
+        }
+        .progress-bar span {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        @keyframes progress-animation {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="ip_checker_online.html">/IP-Checker-Online</a></p>
+    </header>
+    <div class="container">
+        <h1>IP Checker Online</h1>
+        <button id="check-ip-button" onclick="startProgress()">Check My IP</button>
+        <div id="progress-container" class="progress-bar hidden">
+            <div id="progress-bar"><span id="progress-text">0%</</span></div>
+        </div>
+        <div id="ip-details" class="hidden">
+            <p><strong>IP Address:</strong> <span id="ip"></span></p>
+            <p><strong>City:</strong> <span id="city"></span></p>
+            <p><strong>Region:</strong> <span id="region"></span></p>
+            <p><strong>Country:</strong> <span id="country"></span></p>
+            <p><strong>ISP:</strong> <span id="org"></span></p>
+            <button id="check-again-button" class="hidden" onclick="startProgress()">Check Again</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+    </div>
+
+    <script>
+        function startProgress() {
+            document.getElementById('check-ip-button').classList.add('hidden');
+            document.getElementById('check-again-button').classList.add('hidden');
+            document.getElementById('ip-details').classList.add('hidden');
+            document.getElementById('progress-container').classList.remove('hidden');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            progressBar.style.width = '0';
+            progressBar.style.animation = 'none';
+            void progressBar.offsetWidth; // Trigger reflow
+            progressBar.style.animation = 'progress-animation 2.5s linear forwards';
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 1;
+                progressText.textContent = progress + '%';
+                if (progress >= 100) clearInterval(interval);
+            }, 25);
+
+            setTimeout(getIPDetails, 2500);
+        }
+
+        async function getIPDetails() {
+            try {
+                const response = await fetch('https://ipinfo.io/json?token=9271209ed53235');
+                const data = await response.json();
+
+                document.getElementById('ip').textContent = data.ip;
+                document.getElementById('city').textContent = data.city;
+                document.getElementById('region').textContent = data.region;
+                document.getElementById('country').textContent = data.country;
+                document.getElementById('org').textContent = data.org;
+
+                document.getElementById('progress-container').classList.add('hidden');
+                document.getElementById('ip-details').classList.remove('hidden');
+                document.getElementById('check-again-button').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error fetching IP details:', error);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Line Counter Online</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.container h1{
+  font-size: 25px;
+}
+textarea {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  font-size: 16px;
+}
+
+#line-counter {
+  text-align: right;
+  font-size: 14px;
+  color: #555;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+    margin: 10px;
+  }
+  textarea {
+    height: 150px;
+    font-size: 14px;
+  }
+  #line-counter {
+    font-size: 12px;
+  }
+}
+header{
+  text-align: center;
+}
+.footer{
+  text-align: center;
+}
+</style>
+</head>
+<body>
+  <header>
+    <h1>Random Tools Web</h1>
+    <p><a href="../index.html">home</a><a href="line_counter_online.html">/Line-Counter-Online
+
+    </a></p>
+</header>
+<div class="container">
+  <h1 style="text-align: center;">Line Counter Online</h1>
+  <textarea id="text-input" placeholder="Type your text here..."></textarea>
+  <div id="line-counter">Lines: 0</div>
+</div>
+<div class="footer">
+  <p>© 2024 Random Tools Web All rights reserved</p>
+  <a href="../index.html">Back To Home</a>
+</div>
+<script>
+const textInput = document.getElementById('text-input');
+const lineCounter = document.getElementById('line-counter');
+
+textInput.addEventListener('input', updateLineCount);
+
+function updateLineCount() {
+  const text = textInput.value;
+  const lines = text.split('\n').length;
+  lineCounter.textContent = `Lines: ${lines}`;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.calculator {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.calculator h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+header{
+    text-align: center;
+}
+.footer{
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="discount_calculator_online.html">/Discount-Calculator
+
+        </a></p>
+    </header>
+    <div class="calculator">
+        <h1>Discount Calculator</h1>
+        <div class="input-group">
+            <label for="original-price">Price before discount:</label>
+            <input type="number" id="original-price" placeholder="Enter original price">
+        </div>
+        <div class="input-group">
+            <label for="discount">Discount (%):</label>
+            <input type="number" id="discount" placeholder="Enter discount percentage">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+
+       
+        <div class="input-group">
+            <label for="final-price">Price after discount:</label>
+            <input type="number" id="final-price" placeholder="Result will be displayed here" readonly>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2024 Random Tools Web All rights reserved</p>
+        <a href="../index.html">Back To Home</a>
+    </div>
+    <script>
+        function calculate() {
+    const originalPrice = parseFloat(document.getElementById('original-price').value);
+    const discount = parseFloat(document.getElementById('discount').value);
+
+    if (!isNaN(originalPrice) && !isNaN(discount)) {
+        // Calculate final price
+        const calculatedFinalPrice = originalPrice - (originalPrice * (discount / 100));
+        document.getElementById('final-price').value = calculatedFinalPrice.toFixed(2);
+    } else {
+        alert('Please enter both the original price and discount percentage.');
+    }
+}
+
+    </script>
+</body>
+</html>

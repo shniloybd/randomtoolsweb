@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyword Density Checker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    textarea {
+        width: 96%;
+        height: 150px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #result {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Keyword Density Checker</h2>
+    <textarea id="textArea" placeholder="Enter your text here..."></textarea>
+    <button onclick="checkDensity()">Check Density</button>
+    <div id="result"></div>
+</div>
+
+<script>
+function checkDensity() {
+    var text = document.getElementById('textArea').value.toLowerCase();
+    var words = text.match(/\b\w+\b/g);
+    var wordCount = words.length;
+    var wordMap = {};
+
+    // Count occurrence of each word
+    words.forEach(function(word) {
+        if (word in wordMap) {
+            wordMap[word]++;
+        } else {
+            wordMap[word] = 1;
+        }
+    });
+
+    // Calculate density
+    var density = {};
+    for (var word in wordMap) {
+        density[word] = (wordMap[word] / wordCount * 100).toFixed(2);
+    }
+
+    // Display result
+    var resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = '';
+    for (var word in density) {
+        resultDiv.innerHTML += '<p>' + word + ': ' + density[word] + '%</p>';
+    }
+}
+</script>
+
+</body>
+</html>

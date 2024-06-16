@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Converter Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .converter {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-sizing: border-box;
+        }
+        .converter input, .converter select, .converter button {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .converter button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .converter button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        @media (max-width: 600px) {
+            .converter {
+                padding: 15px;
+            }
+            .converter h2 {
+                font-size: 24px;
+            }
+            .converter button {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .converter input, .converter select {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Random Tools Web</h1>
+        <p><a href="../index.html">home</a><a href="speed_converter_online.html
+            ">/Speed-Converter-Online
+
+
+        </a></p>
+    </header>
+<div class="converter">
+    <h2>Speed Converter Online</h2>
+    <input type="number" id="speedInput" placeholder="Enter speed"> 
+    <select id="fromUnit">
+        <option value="kmh">km/h</option>
+        <option value="mph">mph</option>
+        <option value="ms">m/s</option>
+        <option value="fts">ft/s</option>
+    </select>
+    <div><h3>To</h3></div>
+    <select id="toUnit">
+        <option value="kmh">km/h</option>
+        <option value="mph">mph</option>
+        <option value="ms">m/s</option>
+        <option value="fts">ft/s</option>
+    </select> 
+    <button onclick="convertSpeed()">Convert</button>
+    <div class="result" id="result"></div>
+</div>
+<div class="footer" style="text-align: center;">
+    <p>© 2024 Random Tools Web All rights reserved</p>
+    <a href="../index.html">Back To Home</a>
+  </div>
+<script>
+    const conversionFactors = {
+        'kmh': {
+            'kmh': 1,
+            'mph': 0.621371,
+            'ms': 0.277778,
+            'fts': 0.911344
+        },
+        'mph': {
+            'kmh': 1.60934,
+            'mph': 1,
+            'ms': 0.44704,
+            'fts': 1.46667
+        },
+        'ms': {
+            'kmh': 3.6,
+            'mph': 2.23694,
+            'ms': 1,
+            'fts': 3.28084
+        },
+        'fts': {
+            'kmh': 1.09728,
+            'mph': 0.681818,
+            'ms': 0.3048,
+            'fts': 1
+        }
+    };
+
+    function convertSpeed() {
+        const speedInput = document.getElementById('speedInput').value;
+        const fromUnit = document.getElementById('fromUnit').value;
+        const toUnit = document.getElementById('toUnit').value;
+        const resultDiv = document.getElementById('result');
+
+        if (speedInput === "") {
+            resultDiv.innerHTML = "Please enter a speed value.";
+            return;
+        }
+
+        const convertedSpeed = (speedInput * conversionFactors[fromUnit][toUnit]).toFixed(2);
+        resultDiv.innerHTML = `${speedInput} ${fromUnit} is equal to ${convertedSpeed} ${toUnit}.`;
+    }
+</script>
+
+</body>
+</html>

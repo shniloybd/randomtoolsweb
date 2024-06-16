@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Manifest</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #codeArea {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: monospace;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+        #submitBtn {
+            background-color: #007bff;
+            color: #fff;
+        }
+        #minifyBtn {
+            background-color: #007bff;
+            color: #fff;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            word-wrap: break-word;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+        #popupText {
+            margin-bottom: 10px;
+            display: block;
+        }
+        #closePopup {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #codeArea {
+                height: 250px;
+            }
+        }
+        @media (max-width: 480px) {
+            #codeArea {
+                height: 200px;
+            }
+        }
+
+
+
+        header{
+          text-align: center;
+        }
+
+        .footer{
+          text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+  <header>
+    <h1>Random Tools Web</h1>
+    <p><a href="../index.html">home</a><a href="code_minify_online.html">/Code-Minify-Online</a></p>
+</header>
+    <div class="container">
+        <h1>Code Minify Online</h1>
+        <textarea id="codeArea" placeholder="Paste your code here..."></textarea>
+        <button id="submitBtn" class="btn">Generate Manifest</button>
+        <button id="minifyBtn" class="btn" style="display:none;">Minify Code & Copy</button>
+        <div id="output"></div>
+        <div class="popup" id="popup">
+            <span id="popupText"></span>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+    <div class="footer">
+      <p>© 2024 Random Tools Web All rights reserved</p>
+      <a href="../index.html">Back To Home</a>
+  </div>
+    <script>
+        // JavaScript code to handle button click and popup logic
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const code = document.getElementById('codeArea').value;
+            document.getElementById('output').textContent = code;
+            document.getElementById('minifyBtn').style.display = 'block';
+        });
+
+        document.getElementById('minifyBtn').addEventListener('click', function() {
+            const code = document.getElementById('codeArea').value.replace(/\s+/g, ' ').trim();
+            navigator.clipboard.writeText(code).then(() => {
+                const popup = document.getElementById('popup');
+                document.getElementById('popupText').textContent = 'Code minified and copied to clipboard!';
+                popup.style.display = 'block';
+            });
+        });
+
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
