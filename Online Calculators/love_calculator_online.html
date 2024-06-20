@@ -5,99 +5,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Calculator</title>
     <style>
+        /* Reset some default styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #fce4ec; /* Light pink background */
+            background-image: url('https://source.unsplash.com/1600x900/?love'); /* Romantic background image */
+            background-size: cover;
+            background-blend-mode: overlay;
+            background-position: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.9); /* White background with transparency */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            background-image: radial-gradient(circle closest-side, #e91e63, transparent); /* Pink radial gradient border */
+            border-radius: 12px;
+            z-index: -1;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Segoe Script', cursive;
+            color: #c2185b; /* Deep pink */
+        }
+        
+        form {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            color: #fff;
         }
-
-        .container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            width: 350px;
-            text-align: center;
-            background: linear-gradient(to bottom, #ff9a9e, #fecfef);
-            color: #ff4081;
-        }
-
-        h1 {
-            margin-bottom: 20px;
-            font-size: 25px;
-        }
-
+        
         .input-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
-
+        
         .input-group {
             flex: 1;
             margin-right: 10px;
-            text-align: left;
         }
-
-        .input-group:last-child {
-            margin-right: 0;
-        }
-
-        .input-group label {
+        
+        label {
+            font-weight: bold;
             display: block;
             margin-bottom: 5px;
+            color: #880e4f; /* Dark pink */
         }
-
-        .input-group input,
-        .input-group select {
+        
+        input[type="text"], select {
             width: 100%;
             padding: 8px;
-            border: 1px solid #ffb3c1;
-            border-radius: 5px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-
+        
         button {
-            background: #ff4081;
-            color: #fff;
+            background-color: #e91e63; /* Pink */
+            color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
             cursor: pointer;
-            transition: background 0.3s;
-            font-size: 1.1em;
+            border-radius: 4px;
+            font-family: 'Segoe Script', cursive;
+            transition: background-color 0.3s ease;
         }
-
+        
         button:hover {
-            background: #e91e63;
+            background-color: #c2185b; /* Darker pink on hover */
         }
-
+        
         .result {
+            text-align: center;
             margin-top: 20px;
-            font-size: 1.4em;
-            font-weight: bold;
+            font-size: 18px;
+            font-family: 'Segoe Script', cursive;
+            color: #c2185b; /* Deep pink */
         }
-
-        header {
-            text-align: center;
-        }
-
+        
         .footer {
+            margin-top: 40px;
             text-align: center;
+            color: #880e4f; /* Dark pink */
         }
-
+        
+        .footer p {
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .footer a {
+            text-decoration: none;
+            color: #e91e63; /* Pink */
+            margin-left: 10px;
+            font-family: 'Segoe Script', cursive;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .input-row {
+                flex-direction: column;
+            }
+            
+            .input-group {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+      
+      
+      .container h1{
+        font-size: 25px;
+      }
+      
+      header {
+        margin-top: 20px;
+      }
+      header p{
+         font-family: 'Segoe Script', cursive;
+        
+      }
+      header a{
+         
+            color: #e91e63; /
+      }
+      
     </style>
 </head>
 <body>
-<header>
+<header style='text-align: center;'>
     <h1>Random Tools Web</h1>
-    <p><a href="../index.html">home</a><a href="love_calculator_online.html">/Love-Calculator</a></p>
+    <p style='text-align: center;'><a href="../index.html">home</a><a href="love_calculator_online.html">/Love-Calculator</a></p>
 </header>
 <div class="container">
     <h1>❤️ Love Calculator ❤️</h1>
@@ -148,7 +216,6 @@
         const yourName = document.getElementById('yourName').value.toLowerCase();
         const partnerName = document.getElementById('partnerName').value.toLowerCase();
 
-        // Define pairs that always result in 100% love score
         const perfectPairs = [
             ['niloy', 'ayisha'],
             ['niloy', 'asu'],
@@ -156,7 +223,6 @@
             ['asu', 'niloy']
         ];
 
-        // Define pairs that always result in 0% love score
         const zeroLovePairs = [
             ['niloy', 'nila'],
             ['nila', 'niloy'],
@@ -170,17 +236,14 @@
             ['lamiya', 'shamim']
         ];
 
-        // Check if the current pair is in the perfectPairs array
         const isPerfectPair = perfectPairs.some(pair => {
             return (pair[0] === yourName && pair[1] === partnerName) || (pair[0] === partnerName && pair[1] === yourName);
         });
 
-        // Check if the current pair is in the zeroLovePairs array
         const isZeroLovePair = zeroLovePairs.some(pair => {
             return (pair[0] === yourName && pair[1] === partnerName) || (pair[0] === partnerName && pair[1] === yourName);
         });
 
-        // Determine the love percentage based on the pair type
         let lovePercentage;
         if (isPerfectPair) {
             lovePercentage = 100;
@@ -190,7 +253,6 @@
             lovePercentage = Math.floor(Math.random() * 101);
         }
 
-        // Display result
         const result = document.getElementById('result');
         result.textContent = `💖 ${yourName} and ${partnerName} have a ${lovePercentage}% love! 💖`;
     }
