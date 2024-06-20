@@ -208,54 +208,74 @@
 </div>
 <script>
     document.getElementById('loveForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        calculateLove();
+    event.preventDefault();
+    calculateLove();
+});
+
+// Object to store calculated results
+let loveResults = {};
+
+function calculateLove() {
+    const yourName = document.getElementById('yourName').value.toLowerCase();
+    const partnerName = document.getElementById('partnerName').value.toLowerCase();
+    
+    // Check if the result already exists in the stored results
+    const storedResult = loveResults[`${yourName}-${partnerName}`];
+    if (storedResult !== undefined) {
+        displayResult(storedResult);
+        return; // Exit the function if result already calculated
+    }
+
+    const perfectPairs = [
+        ['niloy', 'ayisha'],
+        ['niloy', 'asu'],
+        ['ayisha', 'niloy'],
+        ['asu', 'niloy']
+    ];
+
+    const zeroLovePairs = [
+        ['niloy', 'nila'],
+        ['nila', 'niloy'],
+        ['rodro', 'lami'],
+        ['rodro', 'lamiya'],
+        ['shamim', 'lami'],
+        ['shamim', 'lamiya'],
+        ['lami', 'rodro'],
+        ['lamiya', 'rodro'],
+        ['lami', 'shamim'],
+        ['lamiya', 'shamim']
+    ];
+
+    const isPerfectPair = perfectPairs.some(pair => {
+        return (pair[0] === yourName && pair[1] === partnerName) || (pair[0] === partnerName && pair[1] === yourName);
     });
 
-    function calculateLove() {
-        const yourName = document.getElementById('yourName').value.toLowerCase();
-        const partnerName = document.getElementById('partnerName').value.toLowerCase();
+    const isZeroLovePair = zeroLovePairs.some(pair => {
+        return (pair[0] === yourName && pair[1] === partnerName) || (pair[0] === partnerName && pair[1] === yourName);
+    });
 
-        const perfectPairs = [
-            ['niloy', 'ayisha'],
-            ['niloy', 'asu'],
-            ['ayisha', 'niloy'],
-            ['asu', 'niloy']
-        ];
-
-        const zeroLovePairs = [
-            ['niloy', 'nila'],
-            ['nila', 'niloy'],
-            ['rodro', 'lami'],
-            ['rodro', 'lamiya'],
-            ['shamim', 'lami'],
-            ['shamim', 'lamiya'],
-            ['lami', 'rodro'],
-            ['lamiya', 'rodro'],
-            ['lami', 'shamim'],
-            ['lamiya', 'shamim']
-        ];
-
-        const isPerfectPair = perfectPairs.some(pair => {
-            return (pair[0] === yourName && pair[1] === partnerName) || (pair[0] === partnerName && pair[1] === yourName);
-        });
-
-        const isZeroLovePair = zeroLovePairs.some(pair => {
-            return (pair[0] === yourName && pair[1] === partnerName) || (pair[0] === partnerName && pair[1] === yourName);
-        });
-
-        let lovePercentage;
-        if (isPerfectPair) {
-            lovePercentage = 100;
-        } else if (isZeroLovePair) {
-            lovePercentage = 0;
-        } else {
-            lovePercentage = Math.floor(Math.random() * 101);
-        }
-
-        const result = document.getElementById('result');
-        result.textContent = `💖 ${yourName} and ${partnerName} have a ${lovePercentage}% love! 💖`;
+    let lovePercentage;
+    if (isPerfectPair) {
+        lovePercentage = 100;
+    } else if (isZeroLovePair) {
+        lovePercentage = 0;
+    } else {
+        lovePercentage = Math.floor(Math.random() * 101);
     }
+
+    // Store the result in the object
+    loveResults[`${yourName}-${partnerName}`] = lovePercentage;
+
+    displayResult(lovePercentage);
+}
+
+function displayResult(lovePercentage) {
+    const yourName = document.getElementById('yourName').value.toLowerCase();
+    const partnerName = document.getElementById('partnerName').value.toLowerCase();
+
+    const result = document.getElementById('result');
+    result.textContent = `💖 ${yourName} and ${partnerName} have a ${lovePercentage}% love! 💖`;
+}
 
 </script>
 </body>
